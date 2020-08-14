@@ -25,6 +25,10 @@
         WHERE id = ? 
         LIMIT 1
         SQL
+        db.execute(sql, id).collect do |row|
+            self.new(id: row[0], name: row[1], type: row[2], db: db)
+        end.first
+    end 
   
   
 end
